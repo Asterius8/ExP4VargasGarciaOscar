@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private WordViewModel mWordViewModel;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
-    private WordListAdapter adapter;   // <-- LO SACAMOS PARA USARLO EN FILTER
+    private WordListAdapter adapter; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
         });
 
-        // 🔎 SEARCH BOX
         EditText searchBox = findViewById(R.id.searchBox);
         searchBox.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -68,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // ⬇⬇⬇ ESTE MÉTODO VA FUERA DEL onCreate()
     private void filter(String text) {
         List<Word> filteredList = new ArrayList<>();
 
@@ -78,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // IMPORTANTE: enviar una nueva lista al ListAdapter
         adapter.submitList(new ArrayList<>(filteredList));
     }
 
